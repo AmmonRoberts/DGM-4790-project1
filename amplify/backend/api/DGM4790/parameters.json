@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "DGM4790",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-02-07T22:58:08.104Z"
+}
