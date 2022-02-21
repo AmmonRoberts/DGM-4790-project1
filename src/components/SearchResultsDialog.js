@@ -44,6 +44,9 @@ const SearchResultsDialog = (props) => {
                     <Typography variant="subtitle1" color="textSecondary">
                       {card.name}
                     </Typography>
+                    <Typography variant="subtitle2" color="textSecondary">
+                      {card.setName} ({card.set})
+                    </Typography>
                     <Image
                       src={card.imageUrl || cardBackPlaceholder}
                       placeholder={cardBackPlaceholder}
@@ -51,12 +54,6 @@ const SearchResultsDialog = (props) => {
                       width={223}
                       height={310}
                       alt={card.name} />
-                    {/* <Typography variant="subtitle1" color="textSecondary">
-                    Mana Cost: {card.manaCost}
-                  </Typography>
-                  <Typography variant="subtitle2" color="textSecondary">
-                    Colors: {card.colors}
-                  </Typography> */}
                   </Box>
                 </CardContent>
                 <CardActions>

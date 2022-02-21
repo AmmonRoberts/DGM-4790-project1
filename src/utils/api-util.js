@@ -1,6 +1,6 @@
 export async function getCardsByName(cardName) {
   const response = await fetch(
-    `https://api.magicthegathering.io/v1/cards?name=${cardName}`,
+    `https://api.magicthegathering.io/v1/cards?name=${cardName}&contains=imageUrl`,
   )
 
   if (response.status == 200) {
