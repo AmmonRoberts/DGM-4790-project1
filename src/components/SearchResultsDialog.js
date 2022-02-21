@@ -42,10 +42,11 @@ const SearchResultsDialog = (props) => {
                 <CardContent>
                   <Box>
                     <Typography variant="subtitle1" color="textSecondary">
-                      Name: {card.name}
+                      {card.name}
                     </Typography>
                     <Image
                       src={card.imageUrl || cardBackPlaceholder}
+                      placeholder={cardBackPlaceholder}
                       // layout={"fill"}
                       width={223}
                       height={310}
