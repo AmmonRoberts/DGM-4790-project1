@@ -1,14 +1,19 @@
+type Legality {
+  format: String
+  legality: String
+}
+
 type Card @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   layout: String
-  cmc: Int
-  colors: String
-  colorIdentity: String
+  cmc: Float
+  colors: [String]
+  colorIdentity: [String]
   type: String
-  supertypes: String
-  types: String
-  subtypes: String
+  supertypes: [String]
+  types: [String]
+  subtypes: [String]
   rarity: String
   set: String
   setName: String
@@ -21,11 +26,11 @@ type Card @model @auth(rules: [{allow: public}]) {
   loyalty: String
   language: String
   gameFormat: String
-  legality: String
+  legality: [String]
   multiverseid: String
   printings: [String]
   source: String
-  legalities: String
+  legalities: [Legality]
   originalType: String
   originalText: String
   imageUrl: String
@@ -33,5 +38,5 @@ type Card @model @auth(rules: [{allow: public}]) {
   border: String
   reserved: String
   releaseDate: String
-  rulings: [String]
 }
+ 
