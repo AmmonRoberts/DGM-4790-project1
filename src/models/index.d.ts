@@ -2,7 +2,11 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-
+export declare class Legality {
+  readonly format?: string;
+  readonly legality?: string;
+  constructor(init: ModelInit<Legality>);
+}
 
 type CardMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
@@ -13,12 +17,12 @@ export declare class Card {
   readonly name?: string;
   readonly layout?: string;
   readonly cmc?: number;
-  readonly colors?: string;
-  readonly colorIdentity?: string;
+  readonly colors?: (string | null)[];
+  readonly colorIdentity?: (string | null)[];
   readonly type?: string;
-  readonly supertypes?: string;
-  readonly types?: string;
-  readonly subtypes?: string;
+  readonly supertypes?: (string | null)[];
+  readonly types?: (string | null)[];
+  readonly subtypes?: (string | null)[];
   readonly rarity?: string;
   readonly set?: string;
   readonly setName?: string;
@@ -31,11 +35,11 @@ export declare class Card {
   readonly loyalty?: string;
   readonly language?: string;
   readonly gameFormat?: string;
-  readonly legality?: string;
+  readonly legality?: (string | null)[];
   readonly multiverseid?: string;
   readonly printings?: (string | null)[];
   readonly source?: string;
-  readonly legalities?: string;
+  readonly legalities?: (Legality | null)[];
   readonly originalType?: string;
   readonly originalText?: string;
   readonly imageUrl?: string;
@@ -43,7 +47,6 @@ export declare class Card {
   readonly border?: string;
   readonly reserved?: string;
   readonly releaseDate?: string;
-  readonly rulings?: (string | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Card, CardMetaData>);

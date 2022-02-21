@@ -13,15 +13,19 @@ import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import SearchIcon from '@mui/icons-material/Search'
-import { getCardByName } from "../utils/api-util"
+import { getCardsByName } from "../utils/api-util"
+import SearchResultsDialog from './SearchResultsDialog'
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
 const ResponsiveAppBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null)
-  const [fetchedCard, setFetchedCard] = React.useState({})
+  const [fetchedCardList, setFetchedCardList] = React.useState([])
   const [searchTerms, setSearchTerms] = React.useState("")
-
+  const [dialog, setDialog] = React.useState({
+    isOpen: false,
+    fetchedCardList: undefined,
+  })
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget)
   }
@@ -34,9 +38,46 @@ const ResponsiveAppBar = () => {
   }
 
   const handleSearch = async () => {
-    const cardSearchResults = await getCardByName(searchTerms)
-    setFetchedCard(cardSearchResults)
-    console.log(cardSearchResults)
+    const cardSearchResults = await getCardsByName(searchTerms)
+    setFetchedCardList(cardSearchResults.cards)
+    setDialog({
+      isOpen: true,
+      fetchedCardList,
+    })
+  }
+
+  const handleCloseDialog = () => {
+    setDialog({
+      isOpen: false
+    })
+  }
+
+  const handleSaveCard = async () => {
+    const newMovieToSave = {
+      // title: fetchedMovie.Title,
+      // year: fetchedMovie.Year,
+      // released: fetchedMovie.Released,
+      // runtime: fetchedMovie.Runtime,
+      // genre: fetchedMovie.Genre,
+      // director: fetchedMovie.Director,
+      // writer: fetchedMovie.Writer,
+      // actors: fetchedMovie.Actors,
+      // plot: fetchedMovie.Plot,
+      // poster: fetchedMovie.Poster,
+      // metascore: fetchedMovie.Metascore,
+      // dvd: fetchedMovie.DVD,
+      // boxOffice: fetchedMovie.BoxOffice,
+    }
+    // try {
+    //   const response = await API.graphql({
+    //     query: createMovieData,
+    //     variables: { input: newMovieToSave},
+    //     authMode: 'API_KEY'
+    //   })
+    //   console.log('Movie was saved!')
+    // } catch (err) {
+    //   console.log("Save movie error ", err)
+    // }
   }
 
   return (
@@ -101,6 +142,13 @@ const ResponsiveAppBar = () => {
           </Box>
         </Toolbar>
       </Container>
+
+      <SearchResultsDialog
+        open={dialog.isOpen}
+        cardList={fetchedCardList}
+        onClose={handleCloseDialog}
+        onSaveCard={handleSaveCard} />
+
     </AppBar>
   )
 }

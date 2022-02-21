@@ -27,23 +27,25 @@ export const schema = {
                 "cmc": {
                     "name": "cmc",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "Float",
                     "isRequired": false,
                     "attributes": []
                 },
                 "colors": {
                     "name": "colors",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "colorIdentity": {
                     "name": "colorIdentity",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "type": {
                     "name": "type",
@@ -54,24 +56,27 @@ export const schema = {
                 },
                 "supertypes": {
                     "name": "supertypes",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "types": {
                     "name": "types",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "subtypes": {
                     "name": "subtypes",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "rarity": {
                     "name": "rarity",
@@ -159,10 +164,11 @@ export const schema = {
                 },
                 "legality": {
                     "name": "legality",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "multiverseid": {
                     "name": "multiverseid",
@@ -188,10 +194,13 @@ export const schema = {
                 },
                 "legalities": {
                     "name": "legalities",
-                    "isArray": false,
-                    "type": "String",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "Legality"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "originalType": {
                     "name": "originalType",
@@ -242,14 +251,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "rulings": {
-                    "name": "rulings",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -294,6 +295,26 @@ export const schema = {
         }
     },
     "enums": {},
-    "nonModels": {},
-    "version": "cf4facee4329ffb47d7c3ab8df40f232"
+    "nonModels": {
+        "Legality": {
+            "name": "Legality",
+            "fields": {
+                "format": {
+                    "name": "format",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "legality": {
+                    "name": "legality",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        }
+    },
+    "version": "cac7a02b3a469291d30ab0ac6d018337"
 };
