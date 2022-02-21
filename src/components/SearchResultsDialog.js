@@ -11,22 +11,22 @@ import {
 import SaveIcon from '@mui/icons-material/Save'
 import Image from 'next/image'
 import cardBackPlaceholder from '../../public/card_back.jpg'
-import { getCardsByName as getCardsByName } from '../utils/api-util'
+import { getCardsByName } from '../utils/api-util'
 import styles from "../styles/Cards.module.css";
 
 const SearchResultsDialog = (props) => {
   const { open, cardList, onSaveCard, onClose } = props
   // console.log(props)
 
-  if (cardList.length != 0) {
-    //   console.log("poop")
-    // console.log(cardList[0])
-    // cardList.map((element) => {
+  // if (cardList.length != 0) {
+  //   console.log("poop")
+  // console.log(cardList[0])
+  // cardList.map((element) => {
 
-    //   console.log(element)
+  //   console.log(element)
 
-    // })
-  }
+  // })
+  // }
   return (
     <Dialog
       maxWidth={false}

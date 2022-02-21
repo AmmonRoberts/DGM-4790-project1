@@ -39,6 +39,9 @@ const ResponsiveAppBar = () => {
 
   const handleSearch = async () => {
     const cardSearchResults = await getCardsByName(searchTerms)
+    if (cardSearchResults.status) {
+      console.log(cardSearchResults);
+    }
     setFetchedCardList(cardSearchResults.cards)
     setDialog({
       isOpen: true,
