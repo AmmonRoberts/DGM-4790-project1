@@ -2,8 +2,6 @@ import * as React from 'react'
 import Amplify, { DataStore } from "aws-amplify"
 import useSWR from "swr"
 import { TradingCard } from '../../models'
-import config from "../../aws-exports"
-import ResponsiveAppBar from "../../components/ResponsiveAppBar"
 import { Box, Card, CardMedia, CardContent, Typography, CardActions, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import Image from 'next/image'
