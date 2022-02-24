@@ -11,22 +11,11 @@ import {
 import SaveIcon from '@mui/icons-material/Save'
 import Image from 'next/image'
 import cardBackPlaceholder from '../../public/card_back.jpg'
-import { getCardsByName } from '../utils/api-util'
 import styles from "../styles/Cards.module.css";
 
 const SearchResultsDialog = (props) => {
   const { open, cardList, onSaveCard, onClose } = props
-  // console.log(props)
 
-  // if (cardList.length != 0) {
-  //   console.log("poop")
-  // console.log(cardList[0])
-  // cardList.map((element) => {
-
-  //   console.log(element)
-
-  // })
-  // }
   return (
     <Dialog
       maxWidth={false}
@@ -37,7 +26,18 @@ const SearchResultsDialog = (props) => {
         {
           cardList.map(card => {
             return (
-              <Card key={card.id} sx={{ maxWidth: 300, m: 1 }}>
+              <Card key={card.id}
+                className={styles.searchResultCard}
+                sx={{
+                  maxWidth: 300,
+                  m: 1,
+                  boxShadow: 3,
+                  '&:hover':
+                  {
+                    cursor: 'pointer',
+                    boxShadow: 10,
+                  }
+                }}>
                 {<CardMedia component="img" image={card.Poster} title={card.Title} />}
                 <CardContent>
                   <Box>
@@ -50,7 +50,6 @@ const SearchResultsDialog = (props) => {
                     <Image
                       src={card.imageUrl || cardBackPlaceholder}
                       placeholder={cardBackPlaceholder}
-                      // layout={"fill"}
                       width={223}
                       height={310}
                       alt={card.name} />

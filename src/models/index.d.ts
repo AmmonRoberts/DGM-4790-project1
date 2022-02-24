@@ -8,11 +8,11 @@ export declare class Legality {
   constructor(init: ModelInit<Legality>);
 }
 
-type CardMetaData = {
+type TradingCardMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-export declare class Card {
+export declare class TradingCard {
   readonly id: string;
   readonly name?: string;
   readonly layout?: string;
@@ -49,6 +49,6 @@ export declare class Card {
   readonly releaseDate?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Card, CardMetaData>);
-  static copyOf(source: Card, mutator: (draft: MutableModel<Card, CardMetaData>) => MutableModel<Card, CardMetaData> | void): Card;
+  constructor(init: ModelInit<TradingCard, TradingCardMetaData>);
+  static copyOf(source: TradingCard, mutator: (draft: MutableModel<TradingCard, TradingCardMetaData>) => MutableModel<TradingCard, TradingCardMetaData> | void): TradingCard;
 }

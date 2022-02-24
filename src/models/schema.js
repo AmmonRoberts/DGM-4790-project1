@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Card": {
-            "name": "Card",
+        "TradingCard": {
+            "name": "TradingCard",
             "fields": {
                 "id": {
                     "name": "id",
@@ -269,7 +269,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Cards",
+            "pluralName": "TradingCards",
             "attributes": [
                 {
                     "type": "model",
@@ -316,5 +316,5 @@ export const schema = {
             }
         }
     },
-    "version": "cac7a02b3a469291d30ab0ac6d018337"
+    "version": "51b07fbc6620cc3aaecf340dd2363a27"
 };

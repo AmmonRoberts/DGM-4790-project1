@@ -7,14 +7,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "12.0.10",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.0",
     "@mui/material": "^5.3.0",
-    "aws-amplify": "^4.3.13"
+    "aws-amplify": "^4.3.13",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "eslint": "8.6.0",

@@ -4,9 +4,9 @@ import { schema } from './schema';
 
 
 
-const { Card, Legality } = initSchema(schema);
+const { TradingCard, Legality } = initSchema(schema);
 
 export {
-  Card,
+  TradingCard,
   Legality
 };

@@ -4,6 +4,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
+import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
 import Container from '@mui/material/Container'
@@ -15,6 +16,9 @@ import TextField from '@mui/material/TextField'
 import SearchIcon from '@mui/icons-material/Search'
 import { getCardsByName } from "../utils/api-util"
 import SearchResultsDialog from './SearchResultsDialog'
+import ErrorMessage from './ErrorMessage'
+import { DataStore } from 'aws-amplify'
+import TradingCard from '../models'
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
@@ -25,6 +29,11 @@ const ResponsiveAppBar = () => {
   const [dialog, setDialog] = React.useState({
     isOpen: false,
     fetchedCardList: undefined,
+  })
+  const [error, setError] = React.useState({
+    isOpen: false,
+    error: undefined,
+    status: undefined
   })
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget)
@@ -37,50 +46,93 @@ const ResponsiveAppBar = () => {
     setSearchTerms(event.target.value)
   }
 
+  const handleKeyUp = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  }
+
   const handleSearch = async () => {
     const cardSearchResults = await getCardsByName(searchTerms)
     if (cardSearchResults.status) {
-      console.log(cardSearchResults);
+      setError({
+        isOpen: true,
+        error: cardSearchResults.error,
+        status: cardSearchResults.status
+      })
+
     }
-    setFetchedCardList(cardSearchResults.cards)
-    setDialog({
-      isOpen: true,
-      fetchedCardList,
-    })
+    else {
+      setFetchedCardList(cardSearchResults.cards)
+      setDialog({
+        isOpen: true,
+        fetchedCardList,
+      })
+    }
   }
 
   const handleCloseDialog = () => {
     setDialog({
       isOpen: false
     })
+    setError({
+      isOpen: false
+    })
   }
 
+
   const handleSaveCard = async () => {
-    const newMovieToSave = {
-      // title: fetchedMovie.Title,
-      // year: fetchedMovie.Year,
-      // released: fetchedMovie.Released,
-      // runtime: fetchedMovie.Runtime,
-      // genre: fetchedMovie.Genre,
-      // director: fetchedMovie.Director,
-      // writer: fetchedMovie.Writer,
-      // actors: fetchedMovie.Actors,
-      // plot: fetchedMovie.Plot,
-      // poster: fetchedMovie.Poster,
-      // metascore: fetchedMovie.Metascore,
-      // dvd: fetchedMovie.DVD,
-      // boxOffice: fetchedMovie.BoxOffice,
+    try {
+      await DataStore.save(
+        new TradingCard({
+
+          // id:
+          //   name:
+          // layout:
+          //   cmc:
+          // colors:
+          //   colorIdentity:
+          // type:
+          //   supertypes:
+          // types:
+          //   subtypes:
+          // rarity:
+          //   set:
+          // setName:
+          //   text:
+          // flavor:
+          //   artist:
+          // number:
+          //   power:
+          // toughness:
+          //   loyalty:
+          // language:
+          //   gameFormat:
+          // legality:
+          //   multiverseid:
+          // printings:
+          //   source:
+          // legalities:
+          //   originalType:
+          // originalText:
+          //   imageUrl:
+          // watermark:
+          //   border:
+          // reserved:
+          //   releaseDate:
+          // createdAt:
+          //   updatedAt:
+
+        }),
+      )
+      console.log('Movie was saved!')
+    } catch (err) {
+      console.log('Save movie error ', err)
+    } finally {
+      setDialog({
+        isOpen: false,
+      })
     }
-    // try {
-    //   const response = await API.graphql({
-    //     query: createMovieData,
-    //     variables: { input: newMovieToSave},
-    //     authMode: 'API_KEY'
-    //   })
-    //   console.log('Movie was saved!')
-    // } catch (err) {
-    //   console.log("Save movie error ", err)
-    // }
   }
 
   return (
@@ -88,11 +140,25 @@ const ResponsiveAppBar = () => {
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Tooltip title='Show my lists'>
-              <Button sx={{ my: 2, color: 'white', display: 'block' }}>
-                <Link href="/">My Lists</Link>
-              </Button>
-            </Tooltip>
+
+            <Link href="/" passHref>
+              <Tooltip title='Take me home'>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  Home
+                  {/* <IconButton>
+                    <HomeIcon />
+                  </IconButton> */}
+                </Button>
+              </Tooltip>
+            </Link>
+
+            <Link href="/cards/myCards/" passHref>
+              <Tooltip title='Show my cards'>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  My Cards
+                </Button>
+              </Tooltip>
+            </Link>
           </Box>
 
           <Box>
@@ -104,6 +170,7 @@ const ResponsiveAppBar = () => {
               label="Search"
               variant="outlined"
               onChange={handleChange}
+              onKeyUp={handleKeyUp}
               value={searchTerms}
               sx={{ backgroundColor: 'white', flexGrow: 2, mr: 20 }}
             />
@@ -146,6 +213,12 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
 
+      <ErrorMessage
+        open={error.isOpen}
+        error={error.error}
+        onClose={handleCloseDialog}
+        status={error.status}
+      />
       <SearchResultsDialog
         open={dialog.isOpen}
         cardList={fetchedCardList}
