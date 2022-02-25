@@ -14,7 +14,65 @@ import cardBackPlaceholder from '../../public/card_back.jpg'
 import styles from "../styles/Cards.module.css";
 
 const SearchResultsDialog = (props) => {
-  const { open, cardList, onSaveCard, onClose } = props
+  const { open, cardList,
+    // onSaveCard,
+    onClose } = props
+
+  const handleSaveCard = async () => {
+    try {
+      await DataStore.save(
+        new TradingCard({
+
+          // id:
+          //   name:
+          // layout:
+          //   cmc:
+          // colors:
+          //   colorIdentity:
+          // type:
+          //   supertypes:
+          // types:
+          //   subtypes:
+          // rarity:
+          //   set:
+          // setName:
+          //   text:
+          // flavor:
+          //   artist:
+          // number:
+          //   power:
+          // toughness:
+          //   loyalty:
+          // language:
+          //   gameFormat:
+          // legality:
+          //   multiverseid:
+          // printings:
+          //   source:
+          // legalities:
+          //   originalType:
+          // originalText:
+          //   imageUrl:
+          // watermark:
+          //   border:
+          // reserved:
+          //   releaseDate:
+          // createdAt:
+          //   updatedAt:
+
+        }),
+      )
+      console.log('Movie was saved!')
+    } catch (err) {
+      console.log('Save movie error ', err)
+    } finally {
+      setDialog({
+        isOpen: false,
+      })
+    }
+  }
+
+
 
   return (
     <Dialog
@@ -56,7 +114,7 @@ const SearchResultsDialog = (props) => {
                   </Box>
                 </CardContent>
                 <CardActions>
-                  <IconButton aria-label="Save to list" onClick={onSaveCard}>
+                  <IconButton aria-label="Save to list" onClick={handleSaveCard}>
                     <SaveIcon />
                   </IconButton>
                 </CardActions>

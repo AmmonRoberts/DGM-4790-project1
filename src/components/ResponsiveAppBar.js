@@ -81,59 +81,7 @@ const ResponsiveAppBar = () => {
   }
 
 
-  const handleSaveCard = async () => {
-    try {
-      await DataStore.save(
-        new TradingCard({
 
-          // id:
-          //   name:
-          // layout:
-          //   cmc:
-          // colors:
-          //   colorIdentity:
-          // type:
-          //   supertypes:
-          // types:
-          //   subtypes:
-          // rarity:
-          //   set:
-          // setName:
-          //   text:
-          // flavor:
-          //   artist:
-          // number:
-          //   power:
-          // toughness:
-          //   loyalty:
-          // language:
-          //   gameFormat:
-          // legality:
-          //   multiverseid:
-          // printings:
-          //   source:
-          // legalities:
-          //   originalType:
-          // originalText:
-          //   imageUrl:
-          // watermark:
-          //   border:
-          // reserved:
-          //   releaseDate:
-          // createdAt:
-          //   updatedAt:
-
-        }),
-      )
-      console.log('Movie was saved!')
-    } catch (err) {
-      console.log('Save movie error ', err)
-    } finally {
-      setDialog({
-        isOpen: false,
-      })
-    }
-  }
 
   return (
     <AppBar position='static' sx={{ background: '#242e33' }}>
@@ -152,7 +100,7 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             </Link>
 
-            <Link href="/cards/myCards/" passHref>
+            <Link href="/cards/mycards/" passHref>
               <Tooltip title='Show my cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   My Cards
@@ -223,7 +171,8 @@ const ResponsiveAppBar = () => {
         open={dialog.isOpen}
         cardList={fetchedCardList}
         onClose={handleCloseDialog}
-        onSaveCard={handleSaveCard} />
+      // onSaveCard={handleSaveCard} 
+      />
 
     </AppBar>
   )
