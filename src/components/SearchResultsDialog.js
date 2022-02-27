@@ -11,6 +11,8 @@ import {
 import SaveIcon from '@mui/icons-material/Save'
 import Image from 'next/image'
 import cardBackPlaceholder from '../../public/card_back.jpg'
+import { DataStore } from 'aws-amplify'
+import TradingCard from '../models'
 import styles from "../styles/Cards.module.css";
 
 const SearchResultsDialog = (props) => {
@@ -18,57 +20,57 @@ const SearchResultsDialog = (props) => {
     // onSaveCard,
     onClose } = props
 
-  const handleSaveCard = async () => {
+  const handleSaveCard = async (event) => {
+    const cardToSave = event.target.dataset.card;
     try {
+      console.log(cardToSave)
       await DataStore.save(
         new TradingCard({
 
-          // id:
-          //   name:
-          // layout:
-          //   cmc:
-          // colors:
-          //   colorIdentity:
-          // type:
-          //   supertypes:
-          // types:
-          //   subtypes:
-          // rarity:
-          //   set:
-          // setName:
-          //   text:
-          // flavor:
-          //   artist:
-          // number:
-          //   power:
-          // toughness:
-          //   loyalty:
-          // language:
-          //   gameFormat:
-          // legality:
-          //   multiverseid:
-          // printings:
-          //   source:
-          // legalities:
-          //   originalType:
-          // originalText:
-          //   imageUrl:
-          // watermark:
-          //   border:
-          // reserved:
-          //   releaseDate:
-          // createdAt:
-          //   updatedAt:
+          id: cardToSave.id,
+          name: cardToSave.name,
+          layout: cardToSave.layout,
+          cmc: cardToSave.cmc,
+          colors: cardToSave.colors,
+          colorIdentity: cardToSave.colorIdentity,
+          type: cardToSave.type,
+          supertypes: cardToSave.supertypes,
+          types: cardToSave.types,
+          subtypes: cardToSave.subtypes,
+          rarity: cardToSave.rarity,
+          set: cardToSave.set,
+          setName: cardToSave.setName,
+          text: cardToSave.text,
+          flavor: cardToSave.flavor,
+          artist: cardToSave.artist,
+          number: cardToSave.number,
+          power: cardToSave.power,
+          toughness: cardToSave.toughness,
+          loyalty: cardToSave.loyalty,
+          language: cardToSave.language,
+          gameFormat: cardToSave.gameFormat,
+          legality: cardToSave.legality,
+          multiverseid: cardToSave.multiverseid,
+          printings: cardToSave.printings,
+          source: cardToSave.source,
+          legalities: cardToSave.legalities,
+          originalType: cardToSave.originalType,
+          originalText: cardToSave.originalText,
+          imageUrl: cardToSave.imageUrl,
+          watermark: cardToSave.watermark,
+          border: cardToSave.border,
+          reserved: cardToSave.reserved,
+          releaseDate: cardToSave.releaseDate,
 
         }),
       )
-      console.log('Movie was saved!')
+      console.log('Card was saved!')
     } catch (err) {
-      console.log('Save movie error ', err)
+      console.log('Save card error ', err)
     } finally {
-      setDialog({
-        isOpen: false,
-      })
+      // setDialog({
+      //   isOpen: false,
+      // })
     }
   }
 
@@ -96,7 +98,8 @@ const SearchResultsDialog = (props) => {
                     boxShadow: 10,
                   }
                 }}>
-                {<CardMedia component="img" image={card.Poster} title={card.Title} />}
+
+                <CardMedia component="img" image={card.Poster} title={card.Title} />
                 <CardContent>
                   <Box>
                     <Typography variant="subtitle1" color="textSecondary">
@@ -115,7 +118,7 @@ const SearchResultsDialog = (props) => {
                 </CardContent>
                 <CardActions>
                   <IconButton aria-label="Save to list" onClick={handleSaveCard}>
-                    <SaveIcon />
+                    <SaveIcon data-card={JSON.stringify(card)} />
                   </IconButton>
                 </CardActions>
               </Card>

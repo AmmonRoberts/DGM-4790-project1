@@ -17,8 +17,6 @@ import SearchIcon from '@mui/icons-material/Search'
 import { getCardsByName } from "../utils/api-util"
 import SearchResultsDialog from './SearchResultsDialog'
 import ErrorMessage from './ErrorMessage'
-import { DataStore } from 'aws-amplify'
-import TradingCard from '../models'
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
@@ -81,8 +79,6 @@ const ResponsiveAppBar = () => {
   }
 
 
-
-
   return (
     <AppBar position='static' sx={{ background: '#242e33' }}>
       <Container maxWidth='xl'>
@@ -104,6 +100,14 @@ const ResponsiveAppBar = () => {
               <Tooltip title='Show my cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   My Cards
+                </Button>
+              </Tooltip>
+            </Link>
+
+            <Link href="/cards/randomcards/" passHref>
+              <Tooltip title='Get some random cards'>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  Random Cards
                 </Button>
               </Tooltip>
             </Link>
