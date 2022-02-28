@@ -12,7 +12,7 @@ export default function Home() {
           <h2>Welcome!</h2>
           <p>New to Magic: The Gathering? You can start by searching things like &quot;zombie&quot;, &quot;darksteel&quot;, &quot;elf&quot; or &quot;sword&quot;.</p>
 
-          <Link href="/cards/mycards" passHref>
+          <Link href="/cards/myCards" passHref>
             <div className={styles.card}>
               <h2>Returning? &rarr;</h2>
               <p>Take a look at your cards here</p>

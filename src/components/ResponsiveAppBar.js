@@ -157,7 +157,7 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             </Link>
 
-            <Link href="/cards/mycards/" passHref>
+            <Link href="/cards/myCards/" passHref>
               <Tooltip title='Show my cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   My Cards
