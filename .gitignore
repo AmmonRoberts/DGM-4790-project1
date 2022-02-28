@@ -54,3 +54,4 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 .vscode
+src/.env

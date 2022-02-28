@@ -76,22 +76,3 @@ const MyCards = (props) => {
 }
 
 export default MyCards;
-
-
-
-// export async function getStaticProps(params) {
-//     let card = {}
-//     try {
-//         let response = await getCardById(params.params.cardId)
-//         card = response.cards[0]
-//         // console.log(cardDetails)
-//     } catch (err) {
-//         console.log("Failed to retrieve card by id", err)
-//     }
-//     // console.log("butt", cardDetails)
-//     return {
-//         props: {
-//             card
-//         },
-//     }
-// }
