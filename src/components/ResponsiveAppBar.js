@@ -11,7 +11,7 @@ import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import Amplify from "aws-amplify";
-import awsExports from "../aws-exports";
+// import awsExports from "../aws-exports";
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
