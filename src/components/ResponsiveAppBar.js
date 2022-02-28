@@ -157,7 +157,7 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             </Link>
 
-            <Link href="/cards/myCards/" passHref>
+            <Link href="/cards/mycards/" passHref>
               <Tooltip title='Show my cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   My Cards
@@ -165,13 +165,13 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             </Link>
 
-            <Link href="/cards/randomCards/" passHref>
+            {/* <Link href="/cards/randomcards/" passHref>
               <Tooltip title='Get some random cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   Random Cards
                 </Button>
               </Tooltip>
-            </Link>
+            </Link> */}
           </Box>
 
           <Box>
