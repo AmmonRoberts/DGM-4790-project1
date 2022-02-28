@@ -251,6 +251,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "cardId": {
+                    "name": "cardId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -316,5 +323,5 @@ export const schema = {
             }
         }
     },
-    "version": "51b07fbc6620cc3aaecf340dd2363a27"
+    "version": "9465487f02e5e00ba09a70e15a0440b1"
 };

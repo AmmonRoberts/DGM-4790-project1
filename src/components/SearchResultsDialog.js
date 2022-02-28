@@ -11,70 +11,10 @@ import {
 import SaveIcon from '@mui/icons-material/Save'
 import Image from 'next/image'
 import cardBackPlaceholder from '../../public/card_back.jpg'
-import { DataStore } from 'aws-amplify'
-import TradingCard from '../models'
 import styles from "../styles/Cards.module.css";
 
 const SearchResultsDialog = (props) => {
-  const { open, cardList,
-    // onSaveCard,
-    onClose } = props
-
-  const handleSaveCard = async (event) => {
-    const cardToSave = event.target.dataset.card;
-    try {
-      console.log(cardToSave)
-      await DataStore.save(
-        new TradingCard({
-
-          id: cardToSave.id,
-          name: cardToSave.name,
-          layout: cardToSave.layout,
-          cmc: cardToSave.cmc,
-          colors: cardToSave.colors,
-          colorIdentity: cardToSave.colorIdentity,
-          type: cardToSave.type,
-          supertypes: cardToSave.supertypes,
-          types: cardToSave.types,
-          subtypes: cardToSave.subtypes,
-          rarity: cardToSave.rarity,
-          set: cardToSave.set,
-          setName: cardToSave.setName,
-          text: cardToSave.text,
-          flavor: cardToSave.flavor,
-          artist: cardToSave.artist,
-          number: cardToSave.number,
-          power: cardToSave.power,
-          toughness: cardToSave.toughness,
-          loyalty: cardToSave.loyalty,
-          language: cardToSave.language,
-          gameFormat: cardToSave.gameFormat,
-          legality: cardToSave.legality,
-          multiverseid: cardToSave.multiverseid,
-          printings: cardToSave.printings,
-          source: cardToSave.source,
-          legalities: cardToSave.legalities,
-          originalType: cardToSave.originalType,
-          originalText: cardToSave.originalText,
-          imageUrl: cardToSave.imageUrl,
-          watermark: cardToSave.watermark,
-          border: cardToSave.border,
-          reserved: cardToSave.reserved,
-          releaseDate: cardToSave.releaseDate,
-
-        }),
-      )
-      console.log('Card was saved!')
-    } catch (err) {
-      console.log('Save card error ', err)
-    } finally {
-      // setDialog({
-      //   isOpen: false,
-      // })
-    }
-  }
-
-
+  const { open, cardList, onSaveCard, onClose } = props
 
   return (
     <Dialog
@@ -117,7 +57,7 @@ const SearchResultsDialog = (props) => {
                   </Box>
                 </CardContent>
                 <CardActions>
-                  <IconButton aria-label="Save to list" onClick={handleSaveCard}>
+                  <IconButton aria-label="Save to list" onClick={onSaveCard}>
                     <SaveIcon data-card={JSON.stringify(card)} />
                   </IconButton>
                 </CardActions>

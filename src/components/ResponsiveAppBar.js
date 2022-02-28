@@ -10,6 +10,8 @@ import Menu from '@mui/material/Menu'
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
+import Amplify from "aws-amplify";
+import awsExports from "../aws-exports";
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
@@ -17,6 +19,10 @@ import SearchIcon from '@mui/icons-material/Search'
 import { getCardsByName } from "../utils/api-util"
 import SearchResultsDialog from './SearchResultsDialog'
 import ErrorMessage from './ErrorMessage'
+import { DataStore } from 'aws-amplify'
+import { TradingCard } from '../models'
+
+Amplify.configure(awsExports)
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
@@ -76,6 +82,61 @@ const ResponsiveAppBar = () => {
     setError({
       isOpen: false
     })
+  }
+
+  const handleSaveCard = async (event) => {
+    const cardToSave = JSON.parse(event.target.dataset.card);
+    try {
+      console.log(cardToSave)
+      const response = await DataStore.save(
+        new TradingCard({
+
+          cardId: cardToSave.id,
+          name: cardToSave.name,
+          layout: cardToSave.layout,
+          cmc: cardToSave.cmc,
+          colors: cardToSave.colors,
+          colorIdentity: cardToSave.colorIdentity,
+          type: cardToSave.type,
+          supertypes: cardToSave.supertypes,
+          types: cardToSave.types,
+          subtypes: cardToSave.subtypes,
+          rarity: cardToSave.rarity,
+          set: cardToSave.set,
+          setName: cardToSave.setName,
+          text: cardToSave.text,
+          flavor: cardToSave.flavor,
+          artist: cardToSave.artist,
+          number: cardToSave.number,
+          power: cardToSave.power,
+          toughness: cardToSave.toughness,
+          loyalty: cardToSave.loyalty,
+          language: cardToSave.language,
+          gameFormat: cardToSave.gameFormat,
+          legality: cardToSave.legality,
+          multiverseid: cardToSave.multiverseid,
+          printings: cardToSave.printings,
+          source: cardToSave.source,
+          legalities: cardToSave.legalities,
+          originalType: cardToSave.originalType,
+          originalText: cardToSave.originalText,
+          imageUrl: cardToSave.imageUrl,
+          watermark: cardToSave.watermark,
+          border: cardToSave.border,
+          reserved: cardToSave.reserved,
+          releaseDate: cardToSave.releaseDate,
+
+        }),
+      )
+
+      console.log('Card was saved!', response)
+    } catch (err) {
+      console.log('Save card error ', err)
+    } finally {
+      // setDialog({
+      //   isOpen: false,
+      // })
+    }
   }
 
 
@@ -175,7 +236,7 @@ const ResponsiveAppBar = () => {
         open={dialog.isOpen}
         cardList={fetchedCardList}
         onClose={handleCloseDialog}
-      // onSaveCard={handleSaveCard} 
+        onSaveCard={handleSaveCard}
       />
 
     </AppBar>

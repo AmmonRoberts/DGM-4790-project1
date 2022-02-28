@@ -38,5 +38,6 @@ type TradingCard @model @auth(rules: [{allow: public}]) {
   border: String
   reserved: String
   releaseDate: String
+  cardId: String
 }
  

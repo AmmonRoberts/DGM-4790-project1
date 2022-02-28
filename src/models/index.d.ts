@@ -47,6 +47,7 @@ export declare class TradingCard {
   readonly border?: string;
   readonly reserved?: string;
   readonly releaseDate?: string;
+  readonly cardId?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<TradingCard, TradingCardMetaData>);
