@@ -87,7 +87,6 @@ const ResponsiveAppBar = () => {
   const handleSaveCard = async (event) => {
     const cardToSave = JSON.parse(event.target.dataset.card);
     try {
-      console.log(cardToSave)
       const response = await DataStore.save(
         new TradingCard({
 
@@ -129,7 +128,7 @@ const ResponsiveAppBar = () => {
         }),
       )
 
-      console.log('Card was saved!', response)
+      console.log('Card was saved!')
     } catch (err) {
       console.log('Save card error ', err)
     } finally {
@@ -157,7 +156,7 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             </Link>
 
-            <Link href="/cards/mycards/" passHref>
+            <Link href="/cards/myCards/" passHref>
               <Tooltip title='Show my cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   My Cards
@@ -165,7 +164,7 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             </Link>
 
-            <Link href="/cards/randomcards/" passHref>
+            <Link href="/cards/randomCards/" passHref>
               <Tooltip title='Get some random cards'>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                   Random Cards

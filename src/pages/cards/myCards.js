@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Amplify, { DataStore } from "aws-amplify"
+import cardBackPlaceholder from '../../../public/card_back.jpg'
 import useSWR from "swr"
 import { TradingCard } from '../../models'
 import { Box, Card, CardMedia, CardContent, Typography, CardActions, IconButton } from '@mui/material'
@@ -61,7 +62,9 @@ const MyCards = (props) => {
                         </Box>
                     </CardContent>
                     <CardActions>
-                        <IconButton aria-label="Delete card from collection" onClick={onSaveCard}>
+                        <IconButton aria-label="Delete card from collection"
+                            onClick={() => { handleDeleteCard(card) }}
+                        >
                             <DeleteIcon />
                         </IconButton>
                     </CardActions>
@@ -73,3 +76,22 @@ const MyCards = (props) => {
 }
 
 export default MyCards;
+
+
+
+// export async function getStaticProps(params) {
+//     let card = {}
+//     try {
+//         let response = await getCardById(params.params.cardId)
+//         card = response.cards[0]
+//         // console.log(cardDetails)
+//     } catch (err) {
+//         console.log("Failed to retrieve card by id", err)
+//     }
+//     // console.log("butt", cardDetails)
+//     return {
+//         props: {
+//             card
+//         },
+//     }
+// }
